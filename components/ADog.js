@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
-import {  View, Text, } from 'react-native';
+import {  View, Text, Image} from 'react-native';
+import FastImage from 'react-native-fast-image';
 
-export default class AllDogs extends Component {
+export default class ADog extends Component {
 
 
 
   render() {
+
+    const { dog } = this.props;
+    
+
     return (
         <View style={{ alignItems: 'flex-start', justifyContent: 'space-between'}}>
         {dog ? (
             <View>
                 <Text >Keep clicking for new dogrgssss</Text>
                 <FastImage
-                    style={{height: 100, width: 100 }}
+                    style={{height: 101, width: 100 }}
                     source={{
                         uri: dog,
                         headers:{ Authorization: 'someAuthToken' },

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
+import ADog from "./ADog";
 import FastImage from 'react-native-fast-image';
 import { StyleSheet, View, Text, Image, Button, ScrollView, TouchableOpacity, Animated, Platform } from 'react-native';
 
@@ -35,24 +36,7 @@ class Dogs extends Component {
                 
         )} 
 
-        {dog ? (
-            <View style={{ alignItems: 'flex-start', justifyContent: 'space-between'}}>
-                <Text >Keep clicking for new dogrgssss</Text>
-                <FastImage
-                    style={{height: 100, width: 100 }}
-                    source={{
-                        uri: dog,
-                        headers:{ Authorization: 'someAuthToken' },
-                        priority: FastImage.priority.normal,
-                    }} />
-                <Image 
-                    source={{uri:dog}} 
-                    style={{width:100, height:100}} />
-            </View>
-        ) : (
-          <Text>Replace the React icon with a doddg!</Text>
-        )}
-
+        <ADog dog={dog} />
         
 
         {error && <Text style={{ color: "red" }}>Uh oh - something went wrong!</Text>}
