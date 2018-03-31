@@ -10,6 +10,10 @@ import configureStore from './store/configureStore';
 
 import { StyleSheet, View, Text, Image, Button, ScrollView, TouchableOpacity, Animated, Platform } from 'react-native';
  
+// const App = StackNavigator({
+//     Home: { screen: HomeScreen },
+//     Profile: { screen: ProfileScreen },
+//   });
 
 
 export default class App extends Component
@@ -25,10 +29,6 @@ export default class App extends Component
  
 
     }
-
-
-
-   
 
     render()
     {

@@ -4,11 +4,11 @@ import axios from "axios";
 
 
 // function that makes the api request and returns a Promise for response
-function fetchDog() {
+function fetchDog(idx) {
   console.log("saga fetchDog")
   return axios({
     method: "get",
-    url: "https://dog.ceo/api/breed/hound/images"
+    url: "https://dog.ceo/api/breed/"+idx+"/images"
   });
 }
 
@@ -16,13 +16,13 @@ function fetchDog() {
 function* workerSaga(args) {
   console.log("workerSaga",args)
   try {
-    console.log("saga workerSagaaaaa")
-    const response = yield call(fetchDog);
+    console.log("saga workerSagaaaaa", args.idx)
+    const response = yield call(() => fetchDog(args.idx));
     console.log("saga response",response)
-    const dog = response.data.message[args.idx];
-    console.log("doggg",dog)
+    const dogs = response.data.message;
+    console.log("doggg",dogs)
     // dispatch a success action to the store with the new dog
-    yield put({ type: "API_CALL_SUCCESS", dog });
+    yield put({ type: "API_CALL_SUCCESS", dogs, idx: args.idx });
   
   } catch (error) {
     // dispatch a failure action to the store with the error
