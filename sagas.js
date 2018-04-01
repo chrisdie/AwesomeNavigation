@@ -19,10 +19,10 @@ function* workerSaga(args) {
   try {
     console.log("saga workerSagaaaaa", args.idx, args.num)
     const response = yield call(() => fetchDog(args.idx));
-    console.log("saga response",response)
+    // console.log("saga response",response)
 
     const dogs = response.data.message;
-    console.log("dogggg",dogs)
+    // console.log("dogggg",dogs)
 
     // dispatch a success action to the store with the new dog
     yield put({ type: "API_CALL_SUCCESS", dogs, idx: args.idx, num:args.num });
