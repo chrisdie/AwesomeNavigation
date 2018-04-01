@@ -35,7 +35,10 @@ export default class App extends React.Component {
         super();
         this.state = {
             fetching: true,
-            store: configureStore(() => this.setState({fetching: false, dogs: {} })),
+            store: configureStore(() => 
+             {
+                this.setState({fetching: false, dogs: {}, idxs: {} })
+             }),
         };
         
     }

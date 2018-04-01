@@ -21,17 +21,17 @@ function reducer(state = initialState, action) {
   switch (action.type) {
     case API_CALL_REQUEST:
 
-      const idxs2 = state.idxs ? state.idxs : {}
+      const idxs2 = state.idxs ? {...state.idxs} : {}
       idxs2[action.num] = action.idx
 
-      return { ...state, fetching: true, error: null, idxs:idxs2, num : action.num };
+      return { ...state, fetching: true, error: null, num : action.num };
       break;
     case API_CALL_SUCCESS:
 
-      const dogs = state.dogs ? state.dogs : {}
+      const dogs = state.dogs ? {...state.dogs} : {}
       dogs[action.num] = action.dogs
 
-      const idxs = state.idxs ? state.idxs : {}
+      const idxs = state.idxs ? {...state.idxs} : {}
       idxs[action.num] = action.idx
 
       return { ...state, fetching: false, dogs, idxs };
