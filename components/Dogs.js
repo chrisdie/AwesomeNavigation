@@ -14,25 +14,57 @@ class Dogs extends Component {
     constructor(){
         super()
         this.alldogViews = {}
+
+        
+        
+        this.breedgen = this.nextBreed();
+        console.log("Dogs this.breedgen ", this.breedgen)
+    }
+
+
+    // shouldComponentUpdate(nextProps, nextState, nextContext){
+    //     console.log("Dogs shouldComponentUpdate", this.props, nextProps)
+    //     if (!this.props.idxs[this.props.num]){
+    //         console.log("Dogs shouldComponentUpdate no idx yet")
+    //         return false;
+    //     }
+    //     if (this.props.idxs[this.props.num] === nextProps.idxs[this.props.num]){
+    //         console.log("Dogs shouldComponentUpdate same dogs")
+    //         return false;
+    //     }
+    //     console.log("breed shouldComponentUpdate true!")
+    //     return true;
+    // }
+
+    nextBreed = function* () {
+        const breeds = ["affenpinscher","african","airedale","akita","appenzeller","basenji","beagle","bluetick","borzoi","bouvier","boxer","brabancon","briard","bulldog","bullterrier","cairn","chihuahua","chow","clumber","collie","coonhound","corgi","dachshund","dane","deerhound","dhole","dingo","doberman","elkhound","entlebucher","eskimo","germanshepherd","greyhound","groenendael","hound","husky","keeshond","kelpie","komondor","kuvasz","labrador","leonberg","lhasa","malamute","malinois","maltese","mastiff","mexicanhairless","mountain","newfoundland","otterhound","papillon","pekinese","pembroke","pinscher","pointer","pomeranian","poodle","pug","pyrenees","redbone"]
+        while(true){
+            const res =  breeds[Math.floor(Math.random()*breeds.length)]
+            console.log("generator res",res)
+            yield res
+        }
     }
 
   render() {
 
-    console.log("render props",this.props);
+    console.log("Dogs render props",this.props);
 
-    const { fetching,  dogs, onRequestDog, error, idx } = this.props;
-    
-    const idx2 = idx === "akita" ? "collie" : "akita";
+    const { fetching,  dogs, onRequestDog, error, idxs, num } = this.props;
+    console.log("Dogs render props num",num);
 
-    console.log("render dogs",dogs);
-    console.log("render idx",idx, idx2);
+    console.log("Dogs render this.breedgen",this.breedgen);
 
     
-    //if (!this.alldogViews[idx]){
-        this.alldogViews[idx] = <Breed dogs={dogs[idx]} ref={idx} idx={idx} />
-    //}
+    const idx = (num && idxs && (num in idxs)) ? idxs[num] : "nothing loaded yet" 
+    const idx2 = this.breedgen.next().value
+    console.log("Dogs render idx via breedgen",idx, idx2, this.breedgen);
 
-    console.log("renderrs fetching", fetching)
+    console.log("Dogs render dogs",dogs);
+    console.log("Dogs render idx",idx, idx2);
+
+    
+
+    console.log("Dogs renderrs fetching", fetching)
     return (
       <View style={{alignItems: 'flex-start', justifyContent: 'space-between'}}>
 
@@ -45,16 +77,15 @@ class Dogs extends Component {
            disabled />
         ) : ( */}
           <Button 
-            onPress={() => {onRequestDog(idx2)}}
+            onPress={() => {onRequestDog(idx2,num)}}
             title="Get Dogg"
             color="#841584"
             accessibilityLabel="Learn more about this purpl button" />
                 
         {/* )}  */}
 
-        {this.alldogViews[idx]}
-        
-        
+        <Text>Dogs of breed "{idx}" - next will be: "{idx2}" </Text>
+        { dogs && <Breed dogs={dogs[num]} /> }
 
         {error && <Text style={{ color: "red" }}>Uh oh - something went wrong!</Text>}
 
@@ -69,7 +100,7 @@ const mapStateToProps = state => {
     fetching: state.reducer.fetching,
     dogs: state.reducer.dogs,
     error: state.reducer.error,
-    idx:  state.reducer.idx,
+    idxs:  state.reducer.idxs,
   };
   console.log("mapStateT oPropsr es",res)
   return res;
@@ -78,9 +109,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onRequestDog: (idx) => {
-        console.log("onRequestDog idx",idx)
-        dispatch({ type: "API_CALL_REQUEST", idx })
+    onRequestDog: (idx,num) => {
+        console.log("onRequestDog idx",idx, num)
+        dispatch({ type: "API_CALL_REQUEST", idx ,num})
     }
   };
 };

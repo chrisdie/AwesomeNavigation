@@ -34,6 +34,8 @@ export default function configureStore(onComplete) {
     ),
   );
 
+  
+
   if (isDebuggingInChrome) {
     window.store = store;
   }
@@ -43,10 +45,10 @@ export default function configureStore(onComplete) {
     .then(onComplete)
     .catch(() => console.log('Failed to load previous state'));
 
-    console.log(reducers,'reducers')
-    console.log(sagas, 'sagas')
+  console.log(reducers,'reducers')
+  console.log(sagas, 'sagas')
 
-    sagaMiddleware.run(sagas);
+  sagaMiddleware.run(sagas);
 
   return store;
 }

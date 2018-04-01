@@ -5,10 +5,11 @@ import axios from "axios";
 
 // function that makes the api request and returns a Promise for response
 function fetchDog(idx) {
-  console.log("saga fetchDog")
+  const url = "https://dog.ceo/api/breed/"+idx+"/images";
+  console.log("saga fetchDogg", url)
   return axios({
     method: "get",
-    url: "https://dog.ceo/api/breed/"+idx+"/images"
+    url: url
   });
 }
 
@@ -16,16 +17,19 @@ function fetchDog(idx) {
 function* workerSaga(args) {
   console.log("workerSaga",args)
   try {
-    console.log("saga workerSagaaaaa", args.idx)
+    console.log("saga workerSagaaaaa", args.idx, args.num)
     const response = yield call(() => fetchDog(args.idx));
     console.log("saga response",response)
+
     const dogs = response.data.message;
-    console.log("doggg",dogs)
+    console.log("dogggg",dogs)
+
     // dispatch a success action to the store with the new dog
-    yield put({ type: "API_CALL_SUCCESS", dogs, idx: args.idx });
+    yield put({ type: "API_CALL_SUCCESS", dogs, idx: args.idx, num:args.num });
   
   } catch (error) {
     // dispatch a failure action to the store with the error
+    console.log("dogggg  error ",error)
     yield put({ type: "API_CALL_FAILURE", error });
   }
 }

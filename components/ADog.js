@@ -9,7 +9,28 @@ export default class ADog extends Component {
   render() {
 
     const { dog } = this.props;
-    
+    //console.log("asdf","asdf".indexOf("a"))
+    //console.log("dog",dog)
+    if (!dog )
+    {
+        return (
+            <Text>No URL given: {dog} </Text>
+        )
+    }
+    if (typeof dog !== "string" )
+    {
+        return (
+            <Text>No URL given: {dog} </Text>
+        )
+    }
+    if (dog.indexOf("http") < 0 )
+    {
+        return (
+            <Text>No URL : {dog} </Text>
+        )
+    }
+
+    //console.log("ADog dog", dog)
 
     return (
         <View style={{ alignItems: 'flex-start', justifyContent: 'space-between'}}>
@@ -23,9 +44,9 @@ export default class ADog extends Component {
                         headers:{ Authorization: 'someAuthToken' },
                         priority: FastImage.priority.normal,
                     }} />
-                <Image 
+                {/* <Image 
                     source={{uri:dog}} 
-                    style={{width:100, height:100}} />
+                    style={{width:100, height:100}} /> */}
             </View>
         ) : (
           <Text>Replace the React icon with a doddg!</Text>

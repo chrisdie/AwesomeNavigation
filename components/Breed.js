@@ -4,20 +4,20 @@ import { View, Text,ScrollView,  } from 'react-native';
 
 export default class Breed extends Component {
 
-shouldComponentUpdate(nextProps, nextState, nextContext){
-    console.log("breed shouldComponentUpdate", this.props, nextProps)
-    if (this.props.idx === nextProps.idx){
-        console.log("breed shouldComponentUpdate false!")
-        return false;
+// shouldComponentUpdate(nextProps, nextState, nextContext){
+//     console.log("breed shouldComponentUpdate", this.props, nextProps)
+//     if (this.props.idx === nextProps.idx){
+//         console.log("breed shouldComponentUpdate false!")
+//         return false;
         
-    }
-    console.log("breed shouldComponentUpdate true!")
-    return true;
-}
+//     }
+//     console.log("breed shouldComponentUpdate true!")
+//     return true;
+// }
 
   render() {
     console.log("breed render")
-    const { dogs, idx } = this.props;
+    const { dogs } = this.props;
 
     const alldogs = []
     let breedDogs = dogs

@@ -11,20 +11,30 @@ const API_CALL_FAILURE = "API_CALL_FAILURE";
 // reducer with initial state
 const initialState = {
   fetching: false,
-  dogs: null,
+  dogs: {},
   error: null,
-  idx : "collie" // akita
+  idxs: {} , 
+  num: undefined
 };
 
 function reducer(state = initialState, action) {
   switch (action.type) {
     case API_CALL_REQUEST:
-      return { ...state, fetching: true, error: null, idx: action.idx };
+
+      const idxs2 = state.idxs ? state.idxs : {}
+      idxs2[action.num] = action.idx
+
+      return { ...state, fetching: true, error: null, idxs:idxs2, num : action.num };
       break;
     case API_CALL_SUCCESS:
+
       const dogs = state.dogs ? state.dogs : {}
-      dogs[action.idx] = action.dogs
-      return { ...state, fetching: false, dogs };
+      dogs[action.num] = action.dogs
+
+      const idxs = state.idxs ? state.idxs : {}
+      idxs[action.num] = action.idx
+
+      return { ...state, fetching: false, dogs, idxs };
       break;
     case API_CALL_FAILURE:
       return { ...state, fetching: false, dogs: null, error: action.error };
