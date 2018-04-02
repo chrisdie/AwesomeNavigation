@@ -25,10 +25,7 @@ class Dogs extends Component {
     shouldComponentUpdate(nextProps, nextState, nextContext){
         console.log("Dogs shouldComponentUpdate idxs", this.props.num, this.props.idxs, nextProps.idxs)
         console.log("Dogs shouldComponentUpdate dogs", this.props.num, this.props.dogs, nextProps.dogs)
-        if (!this.props.idxs[this.props.num]){
-            console.log("Dogs shouldComponentUpdate no idx yet", this.props.num)
-            return true;
-        }
+        
         // no data for me:
         if (!this.props.num in nextProps.idxs){
             console.log("Dogs shouldComponentUpdate no data", 

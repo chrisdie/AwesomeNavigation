@@ -7,6 +7,10 @@ import createSagaMiddleware from 'redux-saga';
 import sagas from '../sagas';
 import devTools from 'remote-redux-devtools';
 import { AsyncStorage } from 'react-native';
+import {
+  createReduxBoundAddListener,
+  createReactNavigationReduxMiddleware,
+} from 'react-navigation-redux-helpers';
 
 const isDebuggingInChrome = __DEV__ && !!window.navigator.userAgent;
 
@@ -16,6 +20,14 @@ const logger = createLogger({
   duration: true,
   diff: true,
 });
+
+
+const navMiddleware = createReactNavigationReduxMiddleware(
+  "root",
+  state => state.nav
+);
+//export const addListener = createReduxBoundAddListener("root");
+
 
 export default function configureStore(onComplete) {
 
@@ -27,6 +39,7 @@ export default function configureStore(onComplete) {
     storage.reducer(reducers), //Apply redux-storage so we can persist Redux state to disk
     compose(
       applyMiddleware(
+        navMiddleware,
         sagaMiddleware,
         storeMiddleware,
         logger,
@@ -35,16 +48,18 @@ export default function configureStore(onComplete) {
     ),
   );
 
-  AsyncStorage.clear().then(onComplete)
+  
 
   if (isDebuggingInChrome) {
     window.store = store;
   }
 
   const load = storage.createLoader(engine);
-//   load(store)
-//     .then(onComplete)
-//     .catch(() => console.log('Failed to load previous state'));
+  load(store)
+    .then(onComplete)
+    .catch(() => console.log('Failed to load previous state'));
+//  AsyncStorage.clear().then(onComplete)
+  // onComplete()
 
   console.log(reducers,'reducers')
   console.log(sagas, 'sagas')
