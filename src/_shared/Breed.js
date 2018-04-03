@@ -23,7 +23,9 @@ export default class Breed extends Component {
     let breedDogs = dogs
     for (let i in breedDogs){
         const dog = breedDogs[i]; 
-        alldogs.push(<ADog dog={dog} key={dog} />)
+        alldogs.push(
+          <ADog dog={dog} key={dog} />
+        )
     }
 
     

@@ -11,7 +11,7 @@ import {
   } from 'react-navigation-redux-helpers';
 
 import MainPage from './MainPage';
-import DogScreen from './DogScreen';
+import DogScreen from '../_shared/DogScreen';
 
 
 

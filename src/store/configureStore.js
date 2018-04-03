@@ -1,14 +1,14 @@
 import { createStore, applyMiddleware, compose  } from 'redux'
 import {createLogger} from 'redux-logger'
-import reducers from '../redux';
+import reducers from './redux';
 import * as storage from 'redux-storage';
 import createEngine from 'redux-storage-engine-reactnativeasyncstorage';
 import createSagaMiddleware from 'redux-saga';
-import sagas from '../sagas';
+import sagas from './sagas';
 import devTools from 'remote-redux-devtools';
 import { AsyncStorage } from 'react-native';
 import {
-  createReduxBoundAddListener,
+  // createReduxBoundAddListener,
   createReactNavigationReduxMiddleware,
 } from 'react-navigation-redux-helpers';
 

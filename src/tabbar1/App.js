@@ -5,12 +5,9 @@ import { connect } from "react-redux";
 
 import { TabNavigator, addNavigationHelpers } from "react-navigation";
 
-import Cats from './components/Cats';
-import Dogs from './components/Dogs';
-import DogScreen from './components/DogScreen';
-import Tab from './components/Tab';
 
-import configureStore from './store/configureStore';
+import DogScreen from '../_shared//DogScreen';
+import configureStore from '../store/configureStore';
 
 import { StyleSheet, View, Text, Image, Button, ScrollView, TouchableOpacity, Animated, Platform } from 'react-native';
  

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { NavigationActions } from 'react-navigation';
-import { AppNavigator } from '../components/StackNav';
+import { AppNavigator } from './StackNav';
 
 const router = AppNavigator.router;
 const mainNavAction = router.getActionForPathAndParams('Main');

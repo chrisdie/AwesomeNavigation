@@ -1,6 +1,7 @@
 
 import { combineReducers } from 'redux';
-import StackNavReducer from './reducers/StackNavReducer';
+
+import StackNavReducer from '../stack/StackNavReducer'; // used only in StackNav-Case
 
 
 
@@ -49,7 +50,7 @@ function reducer(state = initialState, action) {
 
 export default combineReducers({
   reducer: reducer,
-  nav: StackNavReducer
+  nav: StackNavReducer  // used only in StackNav-Case
   //user,
   //entities,
 });

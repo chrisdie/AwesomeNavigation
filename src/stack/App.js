@@ -4,9 +4,9 @@ import { createStore, combineReducers } from 'redux';
 import { connect } from 'react-redux';
 import { Provider } from 'react-redux';
 
-import StackNav from './components/StackNav';
+import StackNav from './StackNav';
 
-import configureStore from './store/configureStore';
+import configureStore from '../store/configureStore';
 
 
   

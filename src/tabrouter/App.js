@@ -7,13 +7,10 @@ import { TabRouter,
     createNavigator,
     createNavigationContainer, } from "react-navigation";
 
-import Cats from './components/Cats';
-import Dogs from './components/Dogs';
-import DogScreen from './components/DogScreen';
-import HomePage from './components/Home';
-import Tab from './components/Tab';
+import DogScreen from '../_shared/DogScreen';
+import HomePage from './Home';
 
-import configureStore from './store/configureStore';
+import configureStore from '../store/configureStore';
 
 import { StyleSheet, View, Text, Image, Button, ScrollView, TouchableOpacity, Animated, Platform } from 'react-native';
  
