@@ -17,7 +17,7 @@ import { StyleSheet, View, Text, Image, Button, ScrollView, TouchableOpacity, An
 
 
 const TabBar = TabRouter({
-    Dogs1: { screen: props => <DogScreen {...props} key="a" num="a"/>},    
+    Dogs1: { screen: props => <DogScreen {...props} key="a" num="instance id?"/>},    
     Home:  { screen: HomePage}  ,
     Dogs3: { screen: props => <DogScreen {...props} key="b" />}  ,
     Dogs4: { screen: DogScreen}  ,

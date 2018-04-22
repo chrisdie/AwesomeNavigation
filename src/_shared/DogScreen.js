@@ -12,20 +12,11 @@ export default class DogScreen extends React.Component
     {
             let {num} = this.props;
             if(!num){
-                num = "b" + Math.floor(Math.random() * 100)
+                num = "instance id: " + Math.floor(Math.random() * 100)
             }
             if (!this.num)
                 this.num = num
             console.log("DogScreen num state before", this.state)
-            // if (!num && !this.state && !this.state['num']){
-            //     num = Math.floor(Math.random() * 100)
-
-            //     console.log("DogScreen num state before", this.state)
-            //     this.setState({...this.state, num})
-            //     console.log("DogScreen num state after", this.state)
-            // }else{
-            //     num = this.state.num
-            // }
 
             console.log("DogScreenn num", this.num)
             return(

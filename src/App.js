@@ -20,7 +20,7 @@ const AppBar = TabNavigator({
     TabNav1: { screen: AppTabBar1},    
     Stack: { screen: AppStack}  ,
     TabRouter: { screen: AppTabRouter}  ,
-    TabBar2: { screen: AppTabBar2}  ,
+    TabNav2: { screen: AppTabBar2}  ,
 
     });
 
